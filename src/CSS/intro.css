@@ -1,0 +1,40 @@
+.card{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .acoes{
+    display: flex;
+    flex-direction: row;
+  }
+  .menu{
+    display:flex;
+    justify-content: flex-start;
+  }
+  .navbar{
+    display: flex;
+    justify-content: space-between;
+    width :80vw;
+    height: 5vh;
+    padding: 5vh 10vw;
+    
+  }
+  .local {
+    margin: 0 0.75vh;
+    border-radius: 10%;
+    background-color: #EBE5F9;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 2vh;
+    color: #8047F8;
+  }
+  .botao{
+    margin: 0% 0.75vh;
+  }
+  .localIcon
+  {
+    height: 3vh;
+    width: 3vh;
+
+  }
