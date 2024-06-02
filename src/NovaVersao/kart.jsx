@@ -1,31 +1,76 @@
 //import {DBKart} from './DB/DBKart';
 import DBCoffees from './DB/DBCoffees';
+import { compras } from './intro';
 import './CSS/intro.css';
 import './CSS/kart.css';
-import { Link, useActionData } from 'react-router-dom';
+import { Form, Link, useActionData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
-const cafe1 = {nome : "Espresso Tradicional", imagem: "cafe1.svg", desc:"o tradicional café feito com água quente e grãos moídos", preco:9.90, tags:["tradicional"] }
-const cafe2 = {nome : "cafe2", imagem: "cafeImagem", desc:"cafeDesc", preco:9.90, tags:"cafetags" }
-const DentroKart = [[cafe1,2],[cafe2,1]]
-const Endereco = {};
+// const cafe1 = {nome : "Espresso Tradicional", imagem: "cafe1.svg", desc:"o tradicional café feito com água quente e grãos moídos", preco:9.90, tags:["tradicional"] }
+// const cafe2 = {nome : "cafe2", imagem: "cafeImagem", desc:"cafeDesc", preco:9.90, tags:"cafetags" }
+const DentroKart = compras;
+let Address = {Endereco:'end',CEP:'',Numero:'',Complemento:'',Bairro:'',Cidade:'',UF:'' };
+
+
+function Apertar()
+{
+  console.log("apertou");
+}
+
+
+
+function CustomInput({children})
+{
+  const [end,setEnd] = useState(Address);
+  let valor = children;
+  
+
+  const ChangeAddr = (valor,value) => {
+    
+    setEnd(previousState => {
+      return { ...previousState, [valor]: value }
+    });
+    Address[valor] = end[valor];
+    console.log(end);
+    console.log(valor);
+    console.log(value);
+    console.log(Address);
+  }
+
+
+  return (
+  <input className='InputEndereco' type = 'text' placeholder={valor} value= {end.valor} onChange={(e)=>{ChangeAddr(valor,e.target.value)}}/>
+  )
+  
+}
+
+
 
 function InputEndereco()
 {
+
+
+
+
   return (
     <div>Complete seu pedido
       <div >
         <div className='AddressBlock'><div className='Addresstitulo'>Endereço de entrega</div>
-        <div> <input className='InputEndereco' type = 'text' placeholder='CEP'/></div>
-        <div> <input className='InputEndereco' type = 'text'/></div>
+        <CustomInput>Endereco</CustomInput>
+
+        <div> <CustomInput>Rua</CustomInput></div>
+
           <div style={{display:'flex', flexWrap:'wrap',justifyContent:'space-between'}}>
-           <div> <input className='InputEndereco2' type = 'text'/></div>
-            <div><input className='InputEndereco2' type = 'text'/></div>
-            <div><input className='InputEndereco2' type = 'text'/></div>
-            <div><input className='InputEndereco2' type = 'text'/></div>
-            <div><input className='InputEndereco2' type = 'text'/></div>
-            <div><input className='InputEndereco2' type = 'text'/></div>
+            <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between', width:'100%'}}>
+              <div style = {{width:'35%'}}> <CustomInput>Numero</CustomInput> </div>
+              <div style = {{width:'60%'}}><CustomInput>Complemento</CustomInput></div>
+            </div>
+            <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between', width:'100%'}}>
+              <div style = {{width:'35%'}}><CustomInput>Bairro</CustomInput></div>
+              <div style = {{width:'48%'}}><CustomInput>Cidade</CustomInput></div>
+              <div style = {{width:'7%'}}><CustomInput>UF</CustomInput></div>
+            </div>
           </div>
           
         </div>
@@ -105,10 +150,8 @@ function Carrinho()
     {
       soma += DentroKart[index][1] * DentroKart[index][0].preco;
     }
-  function Apertar()
-  {
-    console.log("apertou");
-  }
+
+
 
   return (
   <div >Cafés selecionados
@@ -132,9 +175,10 @@ function Kart()
 {
   return (
     <div className='hAround'>
+
       <InputEndereco />
       <Carrinho />
-      
+         
     </div>
   )
 

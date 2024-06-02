@@ -1,14 +1,32 @@
-const cafe1 = {nome : "Espresso Tradicional", imagem: "cafe1.svg", desc:"o tradicional café feito com água quente e grãos moídos", preco:9.90, tags:["tradicional"] }
-const cafe2 = {nome : "cafe2", imagem: "cafeImagem", desc:"cafeDesc", preco:9.90, tags:"cafetags" }
-const DentroKart = [[cafe1,2],[cafe2,1]]
+
  
 
 
-let soma = 0;
-    for (let index in DentroKart)
-      {
-        soma += DentroKart[index][1]*DentroKart[index][0].preco;
-        console.log(DentroKart[index][1]);
-        console.log(DentroKart[index][0].preco);
-      }
-console.log(soma);
+let cafe1 = {};
+let cafe2= {};
+let cafe3= {};
+let cafe4 = {};
+const compras = [];
+
+let props = cafe2;
+let count = 4;
+  let indCompras =0;
+  let isInCompras = false;
+  for (let index in compras)
+  {
+    if (compras[index].includes(props)){
+      isInCompras = true;
+      indCompras=index;
+    }
+  }
+  if (!isInCompras)
+  {
+  let list = [props,count];
+    compras.push(list);
+  }
+  else{
+    compras[indCompras][1] = count;
+  }
+
+
+  console.log(compras);

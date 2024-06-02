@@ -11,7 +11,7 @@ import './CSS/finalizado.css'
 
 function Navbar(){  
     return ( 
-    <div>
+    <div style = {{width:'80%', display: 'flex',flexDirection:'row',}}>
     <div className='navbar'>
       <Link to ="/">
         <img src="Logo.svg" alt ="logo" ></img>

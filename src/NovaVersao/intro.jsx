@@ -14,7 +14,29 @@ import './CSS/finalizado.css'
 
 const compras =[];
 
-function addCompra(){
+function addCompra(list)
+{
+  let count = list[1];
+  let indCompras;
+  let isInCompras = false;
+  for (let index in compras)
+  {
+    if (compras[index].includes(list[0])){
+      isInCompras = true;
+      indCompras=index;
+    }
+  }
+  if (!isInCompras)
+  {
+    compras.push(list);
+  }
+  else{
+    compras[indCompras][1] = list[1];
+  }
+  console.log("comprado!");
+  console.log(list);
+  console.log(count);
+ 
   
 }
 
@@ -48,7 +70,7 @@ function Intro()
 function Home(){
     return (
     <>
-       {/* <Navbar />     */}
+      
         <Intro />      
         <Menu />
     </>
@@ -85,7 +107,7 @@ function CoffeeCard(props)
   
   <div className='CoffeeCard'>
       <div className='ImageNTags'>  
-        <img src ={props.imagem} alt = "{props.nome}" className='CoffeeImage'></img>
+        <img src ={props.imagem} alt = "coffee" className='CoffeeImage'></img>
         <div className='CoffeeTagsParent'><div className='CoffeeTags'>{props.tags}</div></div>
       
         <h3 className='CoffeeName'>{props.nome}</h3>
@@ -99,7 +121,7 @@ function CoffeeCard(props)
             <div class= "CoffeeContadorItem">{contador}</div>
             <div  class= "CoffeeContadorItem2"onClick={() => setContador((contador) => contador + 1)}>+</div>
           </div>      
-          <div className='CoffeeBotao'>
+          <div className='CoffeeBotao' onClick={()=>(addCompra([props,contador]))}>
             <img src = "IconIntro1.svg" alt = "icon1" ></img>
           </div>
         </div>
@@ -112,3 +134,4 @@ function CoffeeCard(props)
 
 
 export default Home
+export {compras}
