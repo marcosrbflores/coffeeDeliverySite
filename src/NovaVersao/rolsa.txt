@@ -1,0 +1,5 @@
+ let soma = 0;
+  for (let index in DentroKart)
+    {
+      soma += DentroKart[index][1]*DentroKart[index][0].preco;
+    }
