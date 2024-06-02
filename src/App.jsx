@@ -19,23 +19,19 @@ import Rodape from "./NovaVersao/rodape.jsx"
 
 
 function App()
-{
-    return (
-    <>
-    
-    <BrowserRouter>
-    <Navbar />
-      <Routes>
-        <Route index element= {<Home />}/>
-        <Route path = "kart" element= {<Kart />}/>
-        <Route path = "checkout" element= {<Checkout />}/>
-        <Route path = "endPurchase" element= {<Finalizado />}/>
-        <Route path = "criar" element = {<Criar />} />
-      </Routes>
-      <Rodape />   
-    </BrowserRouter>
-    </>
- )
+{  
+  return (<div>ola</div>
+    // <BrowserRouter>
+    //   <Navbar />
+    //   <Routes>
+    //     <Route index element= {<Home />}/>
+    //     <Route path = "kart" element= {<Kart />}/>
+    //     <Route path = "checkout" element= {<Checkout />}/>
+    //     <Route path = "endPurchase" element= {<Finalizado />}/>
+    //     <Route path = "criar" element = {<Criar />} />
+    //   </Routes>
+    //   </BrowserRouter>
+      )
 }
  
   

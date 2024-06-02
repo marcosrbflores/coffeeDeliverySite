@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Navbar from "./navbar.jsx"
+import DBCoffees from './DB/DBCoffees.jsx';
+import {DBKart} from './DB/DBKart.jsx';
+import { addCoffeeKart } from './DB/DBKart.jsx';
 
 
 import './CSS/App.css'
@@ -10,34 +12,11 @@ import './CSS/kart.css'
 import './CSS/checkout.css'
 import './CSS/finalizado.css'
 
+const compras =[];
 
-
-const cafe1 = {nome : "cafe1", imagem: "cafe1.svg", desc:"cafeDesc", preco:"cafepreco", tags:"cafetags" }
-const cafe2 = {nome : "cafe2", imagem: "cafeImagem", desc:"cafeDesc", preco:"cafepreco", tags:"cafetags" }
-const cafe3 = {nome : "cafe3", imagem: "cafeImagem", desc:"cafeDesc", preco:"cafepreco", tags:"cafetags" }
-const cafe4 = {nome : "cafe4", imagem: "cafeImagem", desc:"cafeDesc", preco:"cafepreco", tags:"cafetags" }   
-const arrayCafes = [cafe1,cafe2,cafe3,cafe4]
-
-// function Navbar(){  
-//   return ( 
-//   <div>
-//   <div className='navbar'>
-//     <Link to ="/">
-//       <img src="Logo.svg" alt ="logo" ></img>
-//     </Link>
-//     <div className='acoes'>
-//       <div className='local'><img src="Icon.svg" alt = "local" className='localIcon'/>São José dos Campos, SP</div>
-//       <div>
-        
-//         <Link to="kart"><img src = "Cart.svg" alt = "cart" className='botao'></img></Link>
-//       </div>
-//       <Link to = "criar"><img src = "Create.svg" alt = "criar" className='botao'/></Link>
-      
-//     </div>
-//   </div>
-//   </div>
-// )}
-
+function addCompra(){
+  
+}
 
 function Intro()
 {
@@ -78,11 +57,12 @@ function Home(){
 
 
 function Menu(){
-  const arrayCards = arrayCafes.map(CoffeeCard)
+  const arrayCards = DBCoffees.map(CoffeeCard)
+  
   return (
     <>
     
-    <div style={{width:"80vw"}}>
+    <div style={{width:"90vw"}}>
       <h3>Nossos Cafés</h3>
       <div className='Menu'>
         {arrayCards}
@@ -94,31 +74,38 @@ function Menu(){
 
 function CoffeeCard(props)
 {
+  const [contador, setContador] = useState(0)
+  if (contador<0)
+    {
+     setContador((contador)=> 0);
+
+    }
 
  return (
   
   <div className='CoffeeCard'>
-    <div className='ImageNTags'>  
-    <img src ={props.imagem} alt = "{props.nome}" className='CoffeeImage'></img>
-    <div className='CoffeeTags'>{props.tags}</div>
-    </div>
-
-
-    <h3>{props.nome}</h3>
-    <div>{props.desc}</div>
-
-    <div>
+      <div className='ImageNTags'>  
+        <img src ={props.imagem} alt = "{props.nome}" className='CoffeeImage'></img>
+        <div className='CoffeeTagsParent'><div className='CoffeeTags'>{props.tags}</div></div>
       
-      
-    <div>{props.preco}</div>
-    <div>contador</div>
-    <div>comprar</div>
-    </div> 
-
-
-
-
-</div>
+        <h3 className='CoffeeName'>{props.nome}</h3>
+        <div className='CoffeeDesc'>{props.desc}</div>
+      </div>
+      <div className='CoffeeComprar'>
+        <div ><span style={{fontSize:"70%"}}>R$ </span>{props.preco}</div>
+        <div className='h'>
+          <div className='CoffeeContador'>
+            <div class= "CoffeeContadorItem2"onClick={() => setContador((contador) => contador - 1)} >-</div>
+            <div class= "CoffeeContadorItem">{contador}</div>
+            <div  class= "CoffeeContadorItem2"onClick={() => setContador((contador) => contador + 1)}>+</div>
+          </div>      
+          <div className='CoffeeBotao'>
+            <img src = "IconIntro1.svg" alt = "icon1" ></img>
+          </div>
+        </div>
+ 
+      </div>
+  </div>
 )
 }
 
