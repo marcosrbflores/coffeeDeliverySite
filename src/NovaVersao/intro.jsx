@@ -117,9 +117,9 @@ function CoffeeCard(props)
         <div ><span style={{fontSize:"70%"}}>R$ </span>{props.preco}</div>
         <div className='h'>
           <div className='CoffeeContador'>
-            <div class= "CoffeeContadorItem2"onClick={() => setContador((contador) => contador - 1)} >-</div>
-            <div class= "CoffeeContadorItem">{contador}</div>
-            <div  class= "CoffeeContadorItem2"onClick={() => setContador((contador) => contador + 1)}>+</div>
+            <div className= "CoffeeContadorItem2"onClick={() => setContador((contador) => contador - 1)} >-</div>
+            <div className= "CoffeeContadorItem">{contador}</div>
+            <div  className= "CoffeeContadorItem2"onClick={() => setContador((contador) => contador + 1)}>+</div>
           </div>      
           <div className='CoffeeBotao' onClick={()=>(addCompra([props,contador]))}>
             <img src = "IconIntro1.svg" alt = "icon1" ></img>

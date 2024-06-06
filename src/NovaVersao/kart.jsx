@@ -3,82 +3,68 @@ import DBCoffees from './DB/DBCoffees';
 import { compras } from './intro';
 import './CSS/intro.css';
 import './CSS/kart.css';
-import { Form, Link, useActionData } from 'react-router-dom';
+import { Form, Link, Navigate, useActionData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 
-// const cafe1 = {nome : "Espresso Tradicional", imagem: "cafe1.svg", desc:"o tradicional café feito com água quente e grãos moídos", preco:9.90, tags:["tradicional"] }
-// const cafe2 = {nome : "cafe2", imagem: "cafeImagem", desc:"cafeDesc", preco:9.90, tags:"cafetags" }
 const DentroKart = compras;
-let Address = {Endereco:'end',CEP:'',Numero:'',Complemento:'',Bairro:'',Cidade:'',UF:'' };
-
-
+let Address = {CEP:'', Rua: '', Num:'',Comp:'',Bairro:'',Cid:'',UF:'', pag:0 };
 function Apertar()
 {
-  console.log("apertou");
+  console.log(pag);
+  console.log(Address);
 }
-
-
-
-function CustomInput({children})
-{
-  const [end,setEnd] = useState(Address);
-  let valor = children;
-  
-
-  const ChangeAddr = (valor,value) => {
-    
-    setEnd(previousState => {
-      return { ...previousState, [valor]: value }
-    });
-    Address[valor] = end[valor];
-    console.log(end);
-    console.log(valor);
-    console.log(value);
-    console.log(Address);
-  }
-
-
-  return (
-  <input className='InputEndereco' type = 'text' placeholder={valor} value= {end.valor} onChange={(e)=>{ChangeAddr(valor,e.target.value)}}/>
-  )
-  
-}
-
 
 
 function InputEndereco()
 {
+  const [Pagamento, setPagamento] = useState(0);
+  const [CEP, setCEP] = useState('');
+  const [Rua, setRua] = useState('');
+  const [Num, setNum] = useState('');
+  const [Comp, setComp] = useState('');
+  const [Bairro, setBairro] = useState('');
+  const [Cid, setCid] = useState('');
+  const [UF, setUF] = useState('');
+  Address.CEP = CEP;
+  Address.Rua = Rua;
+  Address.Num = Num;
+  Address.Comp = Comp;
+  Address.Bairro = Bairro;
+  Address.Cid = Cid;
+  Address.UF = UF;
+  Address.pag = Pagamento;
+  
 
-
-
-
+console.log(Address.pag)
   return (
     <div>Complete seu pedido
       <div >
         <div className='AddressBlock'><div className='Addresstitulo'>Endereço de entrega</div>
-        <CustomInput>Endereco</CustomInput>
+        <input className='InputEndereco' type = 'text' placeholder='CEP' value = {CEP} onChange={(e)=>setCEP(e.target.value)} />
+        
 
-        <div> <CustomInput>Rua</CustomInput></div>
+        <div> <input className='InputEndereco' type = 'text' placeholder='Rua' value = {Rua} onChange={(e)=>setRua(e.target.value)}></input></div>
 
           <div style={{display:'flex', flexWrap:'wrap',justifyContent:'space-between'}}>
             <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between', width:'100%'}}>
-              <div style = {{width:'35%'}}> <CustomInput>Numero</CustomInput> </div>
-              <div style = {{width:'60%'}}><CustomInput>Complemento</CustomInput></div>
+            <div style = {{width:'35%'}}><input className='InputEndereco' type = 'text' placeholder='Numero' value = {Num} onChange={(e)=>setNum(e.target.value)}/></div>
+              <div style = {{width:'60%'}}><input className='InputEndereco' type = 'text' placeholder='Complemento' value = {Comp} onChange={(e)=>setComp(e.target.value)}/></div>
             </div>
             <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between', width:'100%'}}>
-              <div style = {{width:'35%'}}><CustomInput>Bairro</CustomInput></div>
-              <div style = {{width:'48%'}}><CustomInput>Cidade</CustomInput></div>
-              <div style = {{width:'7%'}}><CustomInput>UF</CustomInput></div>
+              <div style = {{width:'35%'}}><input className='InputEndereco' type = 'text' placeholder='Bairro' value = {Bairro} onChange={(e)=>setBairro(e.target.value) }/></div>
+              <div style = {{width:'48%'}}><input className='InputEndereco' type = 'text' placeholder='Cidade' value = {Cid} onChange={(e)=>setCid(e.target.value)}/></div>
+              <div style = {{width:'7%'}}><input className='InputEndereco' type = 'text' placeholder='UF' value = {UF} onChange={(e)=>setUF(e.target.value) }/></div>
             </div>
           </div>
           
         </div>
         <div className='AddressBlock'><div className='Addresstitulo'>Forma de pagamento</div>
           <div style={{display:'flex', flexWrap:'wrap',justifyContent:'space-around'}}>
-            <button className='botaoPagamento'>Crédito</button>
-            <button className='botaoPagamento'>Débito</button>
-            <button className='botaoPagamento'>Dinheiro</button>
+            <button type='checkbox' className='botaoPagamento' onClick={()=>setPagamento(1)}>Crédito</button>
+            <button className='botaoPagamento' onClick={()=>setPagamento(2)}>Débito</button>
+            <button className='botaoPagamento' onClick={()=>setPagamento(3)}>Dinheiro</button>
           </div>
         </div>
       </div>
@@ -143,7 +129,12 @@ function CoffeeInKart(list)
 
 function Carrinho()
 {
+
+  const navigate = useNavigate();
   const arrayKart = DentroKart.map(CoffeeInKart);
+
+
+
   const valorEntrega = 3.5;
   let soma = 0;
   for (let index in DentroKart)
@@ -162,7 +153,7 @@ function Carrinho()
         <div className='hBetween'><div>entrega</div> <div>{"R$  "}{valorEntrega.toPrecision(3)}</div></div>
         <div className='hBetween'><div>total</div> <div>R${(soma+valorEntrega).toPrecision(4)}</div></div>
       </div>
-      <button style={{backgroundColor:"#DBAC2C", color:"#fffff",borderRadius:'0'}} onClick={Apertar}><Link to="/endPurchase" >CONFIRMAR PEDIDO</Link></button>
+      <button style={{backgroundColor:"#DBAC2C", color:"#fffff",borderRadius:'0'}} onClick={navigate("/endPurchase", {state : {...Address} })}><Link>CONFIRMAR PEDIDO</Link></button>
     </div>
     
     </div>
@@ -183,4 +174,5 @@ function Kart()
   )
 
 }
+
 export default Kart
