@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+.horiz
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2vh 0;
+    
+}
+.mensagem1
+{
+ font-family: 'Baloo 2';
+ margin-bottom: 5vh;
+}
+.uhu
+{
+    color: #C47F17;
+    margin-bottom: 0;
+}
+.agora
+{
+    font-family: 'Roboto';
+    color: #403937
+}
+.addrBlock
+{
+    font-family: "Roboto";
+    color:#574F4D;
+    padding: 4vh;
+    border:1px solid #DBAC2C;
+    border-radius: 1vh 5vh 1vh 5vh;
+}
+.PaymentFinal
+{
+    border-radius: 30vh;
+    margin-right: 2vh;
+}
+.localFinal
+{
+    margin-right: 2vh;
+    width: 40%;
+    aspect-ratio: 1/1;
+    padding: 1vh;
+    background-color:#8047F8;
+    border-radius: 30vh;
+}
+.tempoFinal
+{
+    margin-right: 2vh;
+    padding: 1vh;
+    background-color: #DBAC2C;
+    border-radius: 30vh;
+}

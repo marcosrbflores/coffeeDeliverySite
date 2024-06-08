@@ -40,8 +40,6 @@ function App()
         <Route path = "endPurchase" element= {<Finalizado />}/>
         <Route path = "criar" element = {<Criar />} />
       </Routes>
-      
-      <Rodape/>
       </BrowserRouter>
       </kartAddContext.Provider>
       </kartContext.Provider>

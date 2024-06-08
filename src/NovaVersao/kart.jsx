@@ -1,12 +1,12 @@
 //import {DBKart} from './DB/DBKart';
 import DBCoffees from './DB/DBCoffees';
-import './CSS/intro.css';
+//import './CSS/intro.css';
 import './CSS/kart.css';
+import { compras } from './intro';
 import { Form, Link, Navigate, useActionData } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, createContext} from 'react';
 import {useNavigate} from 'react-router-dom';
 import { kartContext } from '../App';
-
 
 let Address = {CEP:'', Rua: '', Num:'',Comp:'',Bairro:'',Cid:'',UF:'', pag:0 };
 function Apertar()
@@ -36,34 +36,56 @@ function InputEndereco()
   Address.pag = Pagamento;
   
 
-console.log(Address.pag)
+console.log(Address)
   return (
     <div>Complete seu pedido
       <div >
-        <div className='AddressBlock'><div className='Addresstitulo'>Endereço de entrega</div>
-        <input className='InputEndereco' type = 'text' placeholder='CEP' value = {CEP} onChange={(e)=>setCEP(e.target.value)} />
+        <div className='AddressBlock'>
+          <div className='Addresstitulo'>
+            <img src="IconLocalOrange.svg" alt = 'local' style={{marginRight:'1vh' }}></img>
+            <div>
+              <div className='h' style={{verticalAlign:'center', fontWeight:'500'}}>Endereço de Entrega</div>
+              <div className='AddressST'> Informe o endereço onde deseja receber seu pedido</div>
+            </div>
+          </div>
+        <input className='InputEndereco' type = 'text' placeholder=' CEP' value = {CEP} onChange={(e)=>setCEP(e.target.value)} />
         
 
-        <div> <input className='InputEndereco' type = 'text' placeholder='Rua' value = {Rua} onChange={(e)=>setRua(e.target.value)}></input></div>
+        <div> <input className='InputEndereco' type = 'text' placeholder=' Rua' value = {Rua} onChange={(e)=>setRua(e.target.value)}></input></div>
 
           <div style={{display:'flex', flexWrap:'wrap',justifyContent:'space-between'}}>
             <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between', width:'100%'}}>
-            <div style = {{width:'35%'}}><input className='InputEndereco' type = 'text' placeholder='Numero' value = {Num} onChange={(e)=>setNum(e.target.value)}/></div>
-              <div style = {{width:'60%'}}><input className='InputEndereco' type = 'text' placeholder='Complemento' value = {Comp} onChange={(e)=>setComp(e.target.value)}/></div>
+            <div style = {{width:'35%'}}><input className='InputEndereco' type = 'text' placeholder=' Numero' value = {Num} onChange={(e)=>setNum(e.target.value)}/></div>
+              <div style = {{width:'60%'}}><input className='InputEndereco' type = 'text' placeholder=' Complemento' value = {Comp} onChange={(e)=>setComp(e.target.value)}/></div>
             </div>
             <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between', width:'100%'}}>
-              <div style = {{width:'35%'}}><input className='InputEndereco' type = 'text' placeholder='Bairro' value = {Bairro} onChange={(e)=>setBairro(e.target.value) }/></div>
-              <div style = {{width:'48%'}}><input className='InputEndereco' type = 'text' placeholder='Cidade' value = {Cid} onChange={(e)=>setCid(e.target.value)}/></div>
-              <div style = {{width:'7%'}}><input className='InputEndereco' type = 'text' placeholder='UF' value = {UF} onChange={(e)=>setUF(e.target.value) }/></div>
+              <div style = {{width:'35%'}}><input className='InputEndereco' type = 'text' placeholder=' Bairro' value = {Bairro} onChange={(e)=>setBairro(e.target.value) }/></div>
+              <div style = {{width:'48%'}}><input className='InputEndereco' type = 'text' placeholder=' Cidade' value = {Cid} onChange={(e)=>setCid(e.target.value)}/></div>
+              <div style = {{width:'7%'}}><input className='InputEndereco' type = 'text' placeholder=' UF' value = {UF} onChange={(e)=>setUF(e.target.value) }/></div>
             </div>
           </div>
           
         </div>
-        <div className='AddressBlock'><div className='Addresstitulo'>Forma de pagamento</div>
-          <div style={{display:'flex', flexWrap:'wrap',justifyContent:'space-around'}}>
-            <button type='checkbox' className='botaoPagamento' onClick={()=>setPagamento(1)}>Crédito</button>
-            <button className='botaoPagamento' onClick={()=>setPagamento(2)}>Débito</button>
-            <button className='botaoPagamento' onClick={()=>setPagamento(3)}>Dinheiro</button>
+        <div className='AddressBlock'><div className='Addresstitulo'>
+            <img src = "IconPayment.svg"></img>
+            <div>
+              <div style={{verticalAlign:'center', fontWeight:'500'}}>Forma de Pagamento</div>
+              <div className='AddressST'>O pagamento é feito na entrega. Escolha a forma que deseja pagar</div>
+            </div>
+        </div>
+          <div style={{display:'flex', flexWrap:'wrap',justifyContent:'space-evenly'}}>
+            <button type='checkbox' className='botaoPagamento' onClick={()=>setPagamento(1)}>
+              <img src = "IconCredit.svg" style={{marginRight:'1vh'}}/>
+              <div className='pagamentoText'>CARTÃO DE CRÉDITO</div>
+            </button>
+            <button className='botaoPagamento' onClick={()=>setPagamento(2)}>
+              <img src = "IconDebit.svg" style={{marginRight:'1vh'}}/>
+              <div className='pagamentoText'>CARTÃO DE  DÉBITO</div>
+            </button>
+            <button className='botaoPagamento' onClick={()=>setPagamento(3)}>
+              <img src = "IconCash.svg" style={{marginRight:'1vh'}}/>
+              <div className='pagamentoText'>DINHEIRO</div>
+            </button>
           </div>
         </div>
       </div>
@@ -73,7 +95,7 @@ console.log(Address.pag)
 
 function CoffeeInKart(list)
   {
-
+    
     const props = list[0];
     const [Contagem, setContagem] = useState(list[1])
     let precoUltimate="";
@@ -107,20 +129,22 @@ function CoffeeInKart(list)
     }
     
     return (
-    <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between', width:"100%",alignItems:"center"  }}> 
-      <img src = {props.imagem} alt=  "{props.nome}" style={{height:"50%"}}/>     
-      <div style={{display:'flex', flexDirection:'column',justifyContent:'space-between',width:"30%", textAlign:'center'}}>
+    <div className = "CoffeeInKart" style={{display:'flex', flexDirection:'row',justifyContent:'space-between', width:"100%",alignItems:"center"  }}> 
+      <img src = {props.imagem} alt=  "{props.nome}" style={{height:'10vh'}}/>     
+      <div style={{display:'flex', flexDirection:'column',justifyContent:'space-between',width:"40%"}}>
         {props.nome}
         <div style={{display:'flex', flexDirection:'row',justifyContent:'space-between'}}>
-          <div style={{display:'flex', flexDirection:'row'}}>
-            <div onClick={ContagemMinus} >-</div>
-            <div>{Contagem}</div>
-            <div onClick={ContagemPlus}>+</div>
+          <div className="CoffeeContador" style={{display:'flex', flexDirection:'row'}}>
+            <img src="IconMinus.svg" className="CoffeeContadorItem3" onClick={ContagemMinus}/>
+            <div className="CoffeeContadorItem">{Contagem}</div>
+            <img src = "IconPlus.svg" className="CoffeeContadorItem3" onClick={ContagemPlus} />
           </div>
-          <div>remover</div>
+        
         </div>
       </div>
-      <div style={{width:"15%", textAlign: "end"}}>{precoUltimate}</div>
+      <div style={{height:'7vh',display:'flex', justifyContent:'flex-start'}}>
+        <div style={{width:"15%", textAlign: "end", fontWeight:'700',}}>R${precoUltimate}</div>
+      </div>
     </div>
 )
   }
@@ -129,7 +153,7 @@ function CoffeeInKart(list)
 
 function Carrinho()
 {
-  DentroKart = useContext(kartContext)
+  const DentroKart = compras
   const navigate = useNavigate();
   const arrayKart = DentroKart.map(CoffeeInKart);
 
@@ -148,12 +172,12 @@ function Carrinho()
   <div >Cafés selecionados
     <div className='AddressBlock' style={{display:'flex', flexDirection:'column',alignItems:'center'  }}>
       {arrayKart}
-      <div style={{display:'flex', flexDirection:'column',alignItems:'center',width:'100%'}}>
-        <div className='hBetween'><div>itens</div> <div>R${soma.toPrecision(4)}</div></div>
-        <div className='hBetween'><div>entrega</div> <div>{"R$  "}{valorEntrega.toPrecision(3)}</div></div>
-        <div className='hBetween'><div>total</div> <div>R${(soma+valorEntrega).toPrecision(4)}</div></div>
+      <div style={{display:'flex', flexDirection:'column',alignItems:'center',width:'100%',fontFamily: 'Roboto' }}>
+        <div className='hBetween' style={{fontFamily: 'Roboto'}}><div className='ItensEEntrega'>Total de itens</div> <div>R${soma.toPrecision(4)}</div></div>
+        <div className='hBetween'><div className='ItensEEntrega'>Entrega</div> <div>{"R$  "}{valorEntrega.toPrecision(3)}</div></div>
+        <div className='hBetween'><div className='finalTotal'>Total</div> <div className='finalTotal'>R${(soma+valorEntrega).toPrecision(4)}</div></div>
       </div>
-      <button style={{backgroundColor:"#DBAC2C", color:"#fffff",borderRadius:'0'}} onClick={navigate("/endPurchase", {state : {...Address} })}><Link>CONFIRMAR PEDIDO</Link></button>
+      <Link to="/endPurchase" state = {Address} ><button className= "botaoKart" >CONFIRMAR PEDIDO</button></Link>
     </div>
     
     </div>
