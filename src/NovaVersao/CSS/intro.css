@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+.card{
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .h{
+    display: flex;
+    flex-direction: row;
+  }
+  .v{
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  .acoes{
+    display: flex;
+    flex-direction: row;
+  }
+  .menu{
+    display:flex;
+    justify-content: flex-start;
+  }
+  .navbar{
+    display: flex;
+    justify-content: space-between;
+    width :100%;
+    height: 5vh;
+    padding: 5vh 5vw;
+    
+  }
+  .local {
+    font-family: 'Roboto';
+    margin: 0 0.75vh;
+    padding : 0 0.5vh;
+    border-radius: 1vh;
+    background-color: #EBE5F9;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 2vh;
+    color: #8047F8;
+  }
+  .botao{
+    margin: 0% 0.75vh;
+    height : 5vh;
+    width : 5vh;
+  }
+  .localIcon
+  {
+    height: 3vh;
+    width: 3vh;
+
+  }
+
+  .Intro{
+    display: flex;
+    flex-direction: row;
+    width:86vw;
+    padding: 5vh 6vw;
+  }
+  .IntroText1{
+    font-family: 'Baloo 2';
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .IntroText2 {
+    font-family: 'Roboto';
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .IntroTextChild{
+    font-family: 'Roboto';
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .IntroFigura1{
+    background-color: #C47F17;
+    padding: 1vh;
+    margin: 0 0.5vh;
+    border-radius: 100vw;
+  }
+  
+  .IntroFigura2{
+    background-color: #574F4D;
+    border-radius: 100vw;
+    padding: 1vh;
+    margin: 0 0.5vh;
+  }
+  
+  .IntroFigura3{
+    background-color:#DBAC2C ;
+    border-radius: 100vw;
+    padding: 1vh;
+    margin: 0 0.5vh;
+  }
+  
+  .IntroFigura4{
+    background-color: #8047F8;
+    border-radius: 100vw;
+    padding: 1vh;
+    margin: 0 0.5vh;
+  }
+
+
+  .CoffeeOur
+  {
+    font-family: 'Baloo 2';
+    font-weight: bolder;
+    font-size: larger;
+    margin-bottom: 5vh;
+  }
+
+  .Menu{
+    font-family: 'Roboto';
+    display: flex;
+    flex-wrap: wrap;;
+
+  }
+  
+  .CoffeeCard2{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  
+    text-align: center;
+    vertical-align: middle;
+    overflow: visible;
+  }
+  
+  .CoffeeCard{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+    background-color: #F3F2F2;
+    border-radius:  1vh 5vh 1vh 5vh;
+    width: 20.5%;
+    height: 20%;
+    margin: 1%;
+  }
+  .CoffeeDesc{
+    width: 80%;
+    font-size: 80%;
+    text-align: center;
+    color:#8D8686;
+  }
+
+  .ImageNTags{
+    height: 120%;
+    padding: 5%;
+    width: 100%;
+    position: relative;
+    top:-5vh;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    justify-content: space-between;
+
+  }
+  .CoffeeImage{
+    height: 50%;
+    width: 50%;
+    margin: 1vh;
+    
+  }
+  .CoffeeTagsParent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  justify-content: center;  }
+
+  .CoffeeTags{
+    width: max-content;
+    height: min-content;
+    white-space: nowrap;
+    font-weight: bold;
+    padding: 1% 7%;
+    margin: 0 2%;
+    font-size: 50%;
+    color: #C47F17;
+    text-align:center;
+    background-color: #F1E9C9;
+    border-radius: 5vh;
+  }
+  .CoffeeName{
+    font-family: 'Baloo 2';
+    margin: 1vh 0;
+    color:#403937;
+  }
+  .CoffeeComprar{
+
+    width: 95%;
+    margin: 3vh 0;
+    padding: 0 5%;
+    font-family: 'Baloo 2';
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    bottom: 3vh;
+  }
+  .CoffeeContador{
+    height: 100%;
+    font-family: 'Baloo 2';
+    margin: 0 1vh;
+    display: flex;
+    flex-direction: row;
+    background-color: #E6E5E5;
+    border-radius: 0.5vh ;
+  }
+  .CoffeeContadorItem{
+    font-family: 'Baloo 2';
+    height : 100%;
+    width : 4vh;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .CoffeeContadorItem2{
+    font-family: 'Baloo 2';
+    color:#8047F8;
+    height : 100%;
+    width : 4vh;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .CoffeeBotao{
+    border-radius: 0.5vh;
+    background-color: #8047F8;
+    height:100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Contadorcomprar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+
+  .numberInKart
+  {
+    border-radius: 10vw;
+    background-color: red;
+    width: 2vh;
+    height: 2vh;
+    z-index:2;
+    font-size: 1.5vh;
+    text-align: center;
+    color: white;
+    position: relative;
+    right: 2vh;
+    top:-1vh
+  }
