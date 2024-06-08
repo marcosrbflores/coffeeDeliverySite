@@ -1,14 +1,13 @@
 //import {DBKart} from './DB/DBKart';
 import DBCoffees from './DB/DBCoffees';
-import { compras } from './intro';
 import './CSS/intro.css';
 import './CSS/kart.css';
 import { Form, Link, Navigate, useActionData } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import { kartContext } from '../App';
 
 
-const DentroKart = compras;
 let Address = {CEP:'', Rua: '', Num:'',Comp:'',Bairro:'',Cid:'',UF:'', pag:0 };
 function Apertar()
 {
@@ -74,6 +73,7 @@ console.log(Address.pag)
 
 function CoffeeInKart(list)
   {
+
     const props = list[0];
     const [Contagem, setContagem] = useState(list[1])
     let precoUltimate="";
@@ -129,7 +129,7 @@ function CoffeeInKart(list)
 
 function Carrinho()
 {
-
+  DentroKart = useContext(kartContext)
   const navigate = useNavigate();
   const arrayKart = DentroKart.map(CoffeeInKart);
 

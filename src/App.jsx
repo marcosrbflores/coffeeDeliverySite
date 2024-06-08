@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, createContext } from 'react'
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -17,12 +17,22 @@ import Navbar from "./NovaVersao/navbar.jsx";
 import Rodape from "./NovaVersao/rodape.jsx"
 
 
-
+const kartContext = createContext();
+const kartAddContext = createContext();
 function App()
 {  
+  const [kart, setKart]=useState([]);
+  function KartAdd([item, number])
+  { 
+    setKart((pKart)=>([...pKart,[item,number]]));
+  }
   return (
+    <kartContext.Provider value ={[...kart]}>
+      <kartAddContext.Provider value ={KartAdd}>
+
     <BrowserRouter>
       <Navbar />
+      
       <Routes>
         <Route index element= {<Home />}/>
         <Route path = "kart" element= {<Kart />}/>
@@ -30,12 +40,16 @@ function App()
         <Route path = "endPurchase" element= {<Finalizado />}/>
         <Route path = "criar" element = {<Criar />} />
       </Routes>
+      
       <Rodape/>
       </BrowserRouter>
+      </kartAddContext.Provider>
+      </kartContext.Provider>
       )
 }
  
   
-
+export {kartContext}
+export {kartAddContext}
 
 export default App

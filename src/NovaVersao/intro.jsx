@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState , createContext, useContext, useEffect} from 'react'
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import DBCoffees from './DB/DBCoffees.jsx';
-import {DBKart} from './DB/DBKart.jsx';
-import { addCoffeeKart } from './DB/DBKart.jsx';
+import { kartContext, kartAddContext} from '../App.jsx';
+
+let localContext = createContext();
 
 
 import './CSS/App.css'
@@ -11,32 +12,48 @@ import './CSS/intro.css'
 import './CSS/kart.css'
 import './CSS/checkout.css'
 import './CSS/finalizado.css'
+import Kart from './kart.jsx';
 
-const compras =[];
+
 
 function addCompra(list)
 {
+  console.log('bronco');
+  const kart = useContext(kartContext);
+  console.log("bronco3");
+  const KartAdicionar = useContext(kartAddContext);
+ 
+ 
   let count = list[1];
-  let indCompras;
-  let isInCompras = false;
-  for (let index in compras)
+  let indkart;
+  let isInkart = false;
+  for (let index in kart)
   {
-    if (compras[index].includes(list[0])){
-      isInCompras = true;
-      indCompras=index;
+    if (kart[index].includes(list[0])){
+      isInkart = true;
+      indkart=index;
     }
   }
-  if (!isInCompras)
+  if (!isInkart)
   {
-    compras.push(list);
+    
+    kart1.push(list);
+    KartAdicionar(list)
+    //setKart((prevKart)=>[...prevKart,list])
   }
   else{
-    compras[indCompras][1] = list[1];
+    console.log("bronco2");
+    KartAdicionar([list[0],indkart])
+    kart[indkart][1] = list[1];
+    
   }
   console.log("comprado!");
   console.log(list);
   console.log(count);
- 
+  console.log(kart)
+  return (
+    <></>
+  )
   
 }
 
@@ -68,19 +85,36 @@ function Intro()
 
 
 function Home(){
-    return (
+  const location = useLocation();
+
+
+  
+
+
+    return (  
     <>
-      
+        <localContext.Provider value = {location}>
         <Intro />      
-        <Menu />
+        <Menu   {...location.state}/>
+        </localContext.Provider>
     </>
     )
 }
 
 
-function Menu(){
-  const arrayCards = DBCoffees.map(CoffeeCard)
-  
+function Menu()
+{
+  let local = useContext(localContext); 
+  // const [arrayCards,setArray] = useState(DBCoffees.map(CoffeeCard));
+  // console.log(local.state)
+
+  if (local.state != undefined)
+    {
+      DBCoffees.push(local.state);
+      local.state = undefined;
+    }
+
+   const arrayCards = DBCoffees.map(CoffeeCard);
   return (
     <>
     
@@ -134,4 +168,3 @@ function CoffeeCard(props)
 
 
 export default Home
-export {compras}

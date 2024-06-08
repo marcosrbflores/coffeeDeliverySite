@@ -237,3 +237,19 @@
     align-items: center;
     
   }
+
+
+  .numberInKart
+  {
+    border-radius: 10vw;
+    background-color: red;
+    width: 2vh;
+    height: 2vh;
+    z-index:2;
+    font-size: 1.5vh;
+    text-align: center;
+    color: white;
+    position: relative;
+    right: 2vh;
+    top:-1vh
+  }
